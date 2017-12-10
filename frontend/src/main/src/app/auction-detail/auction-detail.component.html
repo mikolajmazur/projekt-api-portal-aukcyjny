@@ -1,0 +1,24 @@
+<div *ngIf="auction">
+<h2>{{auction.title}}</h2>
+
+<div class="row">
+  <div class="col-xs-12 col-md-5">
+    <img src="assets/{{auction.id}}.jpg" class="img-fluid" />
+  </div>
+  <div class="col-xs-12 col-md-7">
+    {{ "currentPrice" | translate }} : {{auction.currentPrice | number : '1.2-2' }} zł<br>
+    {{ "endDate" | translate }} : {{auction.endDateTime}}<br>
+    <hr>
+    <label>{{ "offer" | translate }} :</label><br><input placeholder="{{getMinimalBid() | number : '1.2-2'}}"><br><br>
+    <button class="btn btn-primary" type="submit">{{ "makeBid" | translate }}</button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <hr>
+    <h3>{{ "itemDescription" | translate }}</h3>
+      {{auction.content}}
+  </div>
+</div>
+</div>

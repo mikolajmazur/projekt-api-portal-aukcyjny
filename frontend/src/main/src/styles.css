@@ -1,0 +1,8 @@
+html {
+  position: relative; /* for fixed footer */
+  min-height: 100%;   /* for fixed footer */
+  overflow-y: scroll; /* always display scrollbar for constant width*/
+}
+body {
+  padding-top: 4rem;  /* for fixed navbar */
+}

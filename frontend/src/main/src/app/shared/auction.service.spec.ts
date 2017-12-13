@@ -2,7 +2,7 @@ import {TestBed, inject, async} from '@angular/core/testing';
 import {HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { AuctionService } from './auction.service';
-import {Auction} from '../auction';
+import {Auction} from '../models/auction';
 
 describe('AuctionService', () => {
   let service: AuctionService;
@@ -31,7 +31,7 @@ describe('AuctionService', () => {
       expect(data['id']).toBe(1);
       expect(data['title']).toBe('Skarpety');
       expect(data['currentPrice']).toBe(10);
-      expect(data['content']).toBe('opis');
+      expect(data['description']).toBe('opis');
       expect(data['endDateTime']).toBe('01.01.2018:13:10:15');
     });
 
@@ -42,20 +42,20 @@ describe('AuctionService', () => {
     req.flush({
       id: 1,
       title: 'Skarpety',
-      content: 'opis',
+      description: 'opis',
       currentPrice: 10,
       endDateTime: '01.01.2018:13:10:15'
     });
   });
 
   it('should update correct auction with PUT', () => {
-    const auction: Auction = { id: 1, title: 'Skarpety', content: 'opis',
-      currentPrice: 10, endDateTime: '01.01.2018:13:10:15'};
+    const auction: Auction = { id: 1, title: 'Skarpety', description: 'opis',
+      currentPrice: 10, endDateTime: '01.01.2018:13:10:15'} as Auction;
     service.updateAuction(auction).subscribe((data) => {
       expect(data['id']).toBe(1);
       expect(data['title']).toBe('Skarpety');
       expect(data['currentPrice']).toBe(10);
-      expect(data['content']).toBe('opis');
+      expect(data['description']).toBe('opis');
       expect(data['endDateTime']).toBe('01.01.2018:13:10:15');
     });
 
@@ -66,27 +66,27 @@ describe('AuctionService', () => {
     req.flush({
       id: 1,
       title: 'Skarpety',
-      content: 'opis',
+      description: 'opis',
       currentPrice: 10,
       endDateTime: '01.01.2018:13:10:15'
     });
   });
 
   it('should create new auction with POST', () => {
-    const auction: Auction = { title: 'Skarpety', content: 'opis',
+    const auction: Auction = { title: 'Skarpety', description: 'opis',
       currentPrice: 10, endDateTime: '01.01.2018:13:10:15'} as Auction;
 
     service.createAuction(auction).subscribe( (data) =>{
       expect(data['id']).toBe(1);
       expect(data['title']).toBe('Skarpety');
       expect(data['currentPrice']).toBe(10);
-      expect(data['content']).toBe('opis');
+      expect(data['description']).toBe('opis');
       expect(data['endDateTime']).toBe('01.01.2018:13:10:15');
     });
 
     const req = httpMock.expectOne('api/auctions', 'post call');
     expect(req.request.method).toBe('POST');
-    expect(req.request.body).toEqual({ title: 'Skarpety', content: 'opis', currentPrice: 10, endDateTime: '01.01.2018:13:10:15' });
+    expect(req.request.body).toEqual({ title: 'Skarpety', description: 'opis', currentPrice: 10, endDateTime: '01.01.2018:13:10:15' });
 
     req.flush({
       id: 1,
@@ -98,8 +98,8 @@ describe('AuctionService', () => {
   });
 
   it('should DELETE correct auction given auction', () => {
-    const auction: Auction = { id: 1, title: 'Skarpety', content: 'opis',
-      currentPrice: 10, endDateTime: '01.01.2018:13:10:15'};
+    const auction: Auction = { id: 1, title: 'Skarpety', description: 'opis',
+      currentPrice: 10, endDateTime: '01.01.2018:13:10:15'} as Auction;
 
     service.deleteAuction(auction).subscribe();
 

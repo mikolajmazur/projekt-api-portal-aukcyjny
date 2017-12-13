@@ -46,12 +46,12 @@ export const createTranslateLoader = (http: HttpClient) => {
         deps: [HttpClient]
       }
     }),
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryAuctionService, {
-        dataEncapsulation: false,
-        passThruUnknownUrl: true
-      }
-    )
+    // HttpClientInMemoryWebApiModule.forRoot(
+    //   InMemoryAuctionService, {
+    //     dataEncapsulation: false,
+    //     passThruUnknownUrl: true
+    //   }
+    // )
   ],
   providers: [ AuctionService ],
   bootstrap: [AppComponent]

@@ -3,5 +3,9 @@
 	"endDate": "Data zakończenia",
 	"offer": "Twoja oferta",
 	"makeBid": "Złóż ofertę",
-	"itemDescription": "Opis przedmiotu"
+	"itemDescription": "Opis przedmiotu",
+	"offers": "Oferty",
+	"amount": "Kwota",
+	"username": "Użytkownik",
+	"date ": "Data"
 }

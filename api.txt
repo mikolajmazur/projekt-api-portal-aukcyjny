@@ -1,0 +1,6 @@
+api/auctions/		- GET		- 200
+api/auctions/{id}	- GET		- 200/404
+api/auctions/{id}	- PUT		- 200/401/403/404
+api/auctions/		- POST		- 201/401/403
+api/auctions/{id}	- DELETE	- 204/401/403/404
+api/auctions/{id}/offers - POST - 201/401/403

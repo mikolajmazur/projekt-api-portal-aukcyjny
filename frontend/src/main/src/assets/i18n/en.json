@@ -3,5 +3,9 @@
 	"endDate": "End date",
 	"offer": "Your offer",
 	"makeBid": "Make a bid",
-	"itemDescription": "Item description"
+	"itemDescription": "Item description",
+	"offers": "Offers",
+	"amount": "Amount",
+	"username": "User",
+	"date ": "Date"
 }

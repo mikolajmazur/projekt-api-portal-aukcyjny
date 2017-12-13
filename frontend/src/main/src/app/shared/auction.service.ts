@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Auction } from '../auction';
+import { Auction } from '../models/auction';
 import {of} from 'rxjs/observable/of';
 import {catchError, tap} from 'rxjs/operators';
 
@@ -14,7 +14,7 @@ const httpOptions = {
 export class AuctionService {
   constructor(private http: HttpClient) { }
 
-  private auctionUrl = 'api/auctions';
+  private auctionUrl = 'api/v2/auctions';
 
   getAuction(id: number): Observable<Auction> {
     const url = `${this.auctionUrl}/${id}`;

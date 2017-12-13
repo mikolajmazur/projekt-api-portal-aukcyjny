@@ -2,7 +2,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Component, Input, OnInit} from '@angular/core';
 import 'rxjs/add/operator/switchMap';
 
-import { Auction } from '../auction';
+import { Auction } from '../models/auction';
 import { AuctionService } from '../shared/auction.service';
 import { Observable } from 'rxjs/Observable';
 

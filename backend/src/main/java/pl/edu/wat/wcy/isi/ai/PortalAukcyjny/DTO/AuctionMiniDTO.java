@@ -8,5 +8,6 @@ import lombok.Value;
 public class AuctionMiniDTO {
     private long id;
     private String title;
-    private double price;
+    private double currentPrice;
+    private String thumbnailUrl;
 }

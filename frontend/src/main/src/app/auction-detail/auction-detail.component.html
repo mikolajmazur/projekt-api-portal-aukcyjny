@@ -1,5 +1,12 @@
 <div *ngIf="auction">
   <h2>{{auction.title}}</h2>
+  <!-- categories the item is in -->
+  <div class="row">
+      <ul *ngFor="let category of auction.containingCategories; let last = last" class="list-inline">
+        <li class="list-inline-item"><a routerLink="/category/{{category.id}}">{{category.name}} </a>
+        <span *ngIf="!last">-></span></li>
+      </ul>
+  </div>
 
   <div class="row">
     <div class="col-xs-12 col-md-5">
@@ -7,15 +14,18 @@
     </div>
     <div class="col-xs-12 col-md-7">
       {{ "currentPrice" | translate }} : {{auction.currentPrice | number : '1.2-2' }} zł<br>
-      {{ "endDate" | translate }} : {{auction.endDateTime}}<br>
+      {{ "endDate" | translate }} : {{auction.endDateTime | date: getDateTimeFormat() }}<br>
       <hr>
-      <label>{{ "offer" | translate }} :</label><br><input placeholder="{{getMinimalBid() | number : '1.2-2'}}"><br><br>
-      <button class="btn btn-primary" type="submit">{{ "makeBid" | translate }}</button>
+      <label>{{ "offer" | translate }} :</label><br><input value="{{auction.minimalBid | number : '1.2-2'}}"><br>
+      Minimum: {{auction.minimalBid | number : '1.2-2'}}<br>
+      <button class="btn btn-primary" type="submit">{{ "makeBid" | translate }}</button><br><br>
+      {{ "seller" | translate }}: {{auction.sellerUsername}}
     </div>
   </div>
 
   <div class="row">
     <div class="col-12">
+      <!-- render description -->
       <hr>
       <h3>{{ "itemDescription" | translate }}</h3>
        <div innerHTML={{auction.description}}></div>
@@ -33,9 +43,9 @@
         </thead>
         <tbody>
         <tr *ngFor="let offer of auction.offers">
-          <td>{{offer.amount}}</td>
-          <td>uzytkownik</td>
-          <td>{{offer.submissionDate}}</td>
+          <td>{{offer.amount | number : '1.2-2'}}</td>
+          <td>{{offer.username}}</td>
+          <td>{{offer.submissionDate | date: getDateTimeFormat()}}</td>
         </tr>
         </tbody>
       </table>

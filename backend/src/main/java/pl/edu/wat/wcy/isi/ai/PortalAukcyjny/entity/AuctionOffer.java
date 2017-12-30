@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
@@ -20,4 +21,6 @@ public class AuctionOffer {
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     private Auction auction;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
 }

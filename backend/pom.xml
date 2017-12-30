@@ -61,6 +61,13 @@
 			<!--<artifactId>spring-boot-starter-security</artifactId>-->
 		<!--</dependency>-->
 
+		<!-- MAIL -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+			<version>1.5.9.RELEASE</version>
+		</dependency>
+
 		<!-- TESTING -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

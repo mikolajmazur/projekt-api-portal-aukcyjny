@@ -20,9 +20,11 @@ public class Auction {
     private LocalDateTime endDateTime;
     private LocalDateTime startDateTime;
     private double startingPrice;
+    private boolean isActive;
     @Lob
     private String description;
     private String photoUrl;
+    private String thumbnailUrl;
     @OneToMany(
             mappedBy = "auction",
             cascade = CascadeType.ALL,
@@ -32,15 +34,21 @@ public class Auction {
     @ManyToOne(fetch = FetchType.LAZY)
     //@JsonIgnore
     private Category category;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User owner;
 
     @Builder
-    public Auction(String title, LocalDateTime endDateTime, LocalDateTime startDateTime, String description, String photoUrl, double startingPrice) {
+    public Auction(String title, LocalDateTime endDateTime, LocalDateTime startDateTime, double startingPrice,
+                   boolean isActive, String description, String photoUrl, Category category, String thumbnailUrl) {
         this.title = title;
         this.endDateTime = endDateTime;
         this.startDateTime = startDateTime;
+        this.startingPrice = startingPrice;
+        this.isActive = isActive;
         this.description = description;
         this.photoUrl = photoUrl;
-        this.startingPrice = startingPrice;
+        this.category = category;
+        this.thumbnailUrl = thumbnailUrl;
     }
 
     public void addOffer(AuctionOffer offer){
@@ -61,5 +69,17 @@ public class Auction {
             currentPrice = this.offers.get(offers.size() - 1).getAmount();
         }
         return currentPrice;
+    }
+
+    public boolean hasOffers(){
+        return !this.offers.isEmpty();
+    }
+
+    public AuctionOffer getTopBid(){
+        return this.offers.get(this.offers.size() - 1);
+    }
+
+    public double getMinimalBid(){
+        return this.getCurrentPrice() * 1.05;
     }
 }

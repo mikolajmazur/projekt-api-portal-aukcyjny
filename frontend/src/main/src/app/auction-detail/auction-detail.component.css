@@ -1,3 +1,11 @@
 img {
   max-height: 350px;
 }
+
+.list-inline {
+  margin-left: 10px;
+}
+
+/*.list-inline-item {*/
+  /*margin-right: 10px;*/
+/*}*/

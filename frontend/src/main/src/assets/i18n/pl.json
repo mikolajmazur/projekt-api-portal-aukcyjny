@@ -3,9 +3,12 @@
 	"endDate": "Data zakończenia",
 	"offer": "Twoja oferta",
 	"makeBid": "Złóż ofertę",
+	"seller": "Sprzedawca",
 	"itemDescription": "Opis przedmiotu",
 	"offers": "Oferty",
 	"amount": "Kwota",
 	"username": "Użytkownik",
-	"date ": "Data"
+	"date ": "Data",
+	"subcategories": "Podkategorie",
+	"noAuctionsInCategory": "Brak aukcji w tej kategorii"
 }

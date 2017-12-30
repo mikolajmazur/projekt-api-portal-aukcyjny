@@ -6,14 +6,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.service.AuctionService;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -38,7 +36,12 @@ public class Category {
             orphanRemoval = true)
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     //@JsonIgnore
-    private List<Category> children;
+    private List<Category> children = new ArrayList<>();
+
+    @Builder
+    public Category(String name) {
+        this.name = name;
+    }
 
     public void addChildCategory(Category child){
         children.add(child);

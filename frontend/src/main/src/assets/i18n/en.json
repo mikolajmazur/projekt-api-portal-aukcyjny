@@ -3,9 +3,12 @@
 	"endDate": "End date",
 	"offer": "Your offer",
 	"makeBid": "Make a bid",
+	"seller": "Seller",
 	"itemDescription": "Item description",
 	"offers": "Offers",
 	"amount": "Amount",
 	"username": "User",
-	"date ": "Date"
+	"date ": "Date",
+	"subcategories": "Subcategories",
+	"noAuctionsInCategory": "There are no auctions in this category"
 }

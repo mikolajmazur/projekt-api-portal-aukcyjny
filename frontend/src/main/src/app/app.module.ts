@@ -11,13 +11,15 @@ import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AuctionDetailComponent } from './auction-detail/auction-detail.component';
-import { CategoryComponent } from './category/category.component';
 import { AddAuctionComponent } from './add-auction/add-auction.component';
 import { AccountComponent } from './account/account.component';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { InMemoryAuctionService } from './shared/in-memory-auction.service';
 import { AuctionService } from './shared/auction.service';
+import { CategoriesListComponent } from './categories-list/categories-list.component';
+import {CategoryService} from "./shared/category.service";
+import { AuctionListComponent } from './auction-list/auction-list.component';
 
 export const createTranslateLoader = (http: HttpClient) => {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -28,11 +30,12 @@ export const createTranslateLoader = (http: HttpClient) => {
     AppComponent,
     NavComponent,
     AuctionDetailComponent,
-    CategoryComponent,
     AddAuctionComponent,
     AccountComponent,
     HomeComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    CategoriesListComponent,
+    AuctionListComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +56,7 @@ export const createTranslateLoader = (http: HttpClient) => {
     //   }
     // )
   ],
-  providers: [ AuctionService ],
+  providers: [ AuctionService, CategoryService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

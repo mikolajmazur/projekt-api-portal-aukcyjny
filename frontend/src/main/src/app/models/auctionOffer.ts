@@ -1,4 +1,5 @@
 export class AuctionOffer{
   amount: number;
-  submissionDate: string;
+  submissionDate: Date;
+  username: string;
 }

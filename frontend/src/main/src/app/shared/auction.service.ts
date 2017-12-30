@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Auction } from '../models/auction';
 import {of} from 'rxjs/observable/of';
 import {catchError, tap} from 'rxjs/operators';
+import {AuctionListItem} from "../models/auctionListItem";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type' : 'application/json'})
@@ -23,6 +24,7 @@ export class AuctionService {
         catchError(this.handleError<Auction>(`getAuction id=${id}`))
       );
   }
+
   updateAuction(auction: Auction): Observable<any> {
     const url = `${this.auctionUrl}/${auction.id}`;
     return this.http.put(url, auction, httpOptions)

@@ -4,6 +4,7 @@ import 'rxjs/add/operator/switchMap';
 
 import { Auction } from '../models/auction';
 import { AuctionService } from '../shared/auction.service';
+import { Constants } from "../shared/constants";
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -36,5 +37,8 @@ export class AuctionDetailComponent implements OnInit {
   }
   getMinimalBid(): number{
     return this.auction.currentPrice * 1.06;
+  }
+  getDateTimeFormat(): string{
+    return Constants.DATE_TIME_FORMAT;
   }
 }

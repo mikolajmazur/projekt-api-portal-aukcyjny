@@ -1,4 +1,4 @@
-package pl.edu.wat.wcy.isi.ai.PortalAukcyjny.service;
+package pl.edu.wat.wcy.isi.ai.PortalAukcyjny.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.val;
@@ -9,6 +9,7 @@ import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.entity.Category;
 import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.exception.CategoryNotFoundException;
 import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.exception.InvalidCategoryException;
 import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.repository.CategoryRepository;
+import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.service.CategoryService;
 
 import java.util.ArrayList;
 import java.util.Collection;

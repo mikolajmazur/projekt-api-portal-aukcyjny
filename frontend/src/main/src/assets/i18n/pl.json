@@ -7,8 +7,16 @@
 	"itemDescription": "Opis przedmiotu",
 	"offers": "Oferty",
 	"amount": "Kwota",
-	"username": "Użytkownik",
+	"user": "Użytkownik",
 	"date ": "Data",
 	"subcategories": "Podkategorie",
-	"noAuctionsInCategory": "Brak aukcji w tej kategorii"
+	"noAuctionsInCategory": "Brak aukcji w tej kategorii",
+	"email": "E-mail",
+	"nameAndSurname": "Imię i nazwisko",
+	"firstName": "Imię",
+	"lastName": "Nazwisko",
+	"username": "Nazwa użytkownika",
+	"password": "Hasło",
+	"repeatPassword": "Powtórz hasło",
+	"register": "Zarejestruj"
 }

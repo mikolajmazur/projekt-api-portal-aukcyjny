@@ -10,9 +10,8 @@ import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.entity.Auction;
 import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.entity.AuctionOffer;
 import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.entity.Category;
 import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.exception.AuctionNotFoundException;
-import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.service.AuctionServiceImpl;
+import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.service.impl.AuctionServiceImpl;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 

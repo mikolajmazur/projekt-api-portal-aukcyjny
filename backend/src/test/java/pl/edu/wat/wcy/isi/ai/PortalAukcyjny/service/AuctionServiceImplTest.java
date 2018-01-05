@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.entity.Auction;
 import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.entity.Category;
 import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.repository.AuctionRepository;
+import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.service.impl.AuctionServiceImpl;
 
 import java.util.List;
 

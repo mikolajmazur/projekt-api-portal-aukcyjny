@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -18,8 +18,11 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { InMemoryAuctionService } from './shared/in-memory-auction.service';
 import { AuctionService } from './shared/auction.service';
 import { CategoriesListComponent } from './categories-list/categories-list.component';
-import {CategoryService} from "./shared/category.service";
+import { CategoryService} from "./shared/category.service";
 import { AuctionListComponent } from './auction-list/auction-list.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { ShowFormErrorsComponent } from './show-form-errors.component';
+import { UserServiceService } from "./shared/user-service.service";
 
 export const createTranslateLoader = (http: HttpClient) => {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -35,11 +38,13 @@ export const createTranslateLoader = (http: HttpClient) => {
     HomeComponent,
     PageNotFoundComponent,
     CategoriesListComponent,
-    AuctionListComponent
+    AuctionListComponent,
+    RegistrationComponent,
+    ShowFormErrorsComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
     TranslateModule.forRoot({
@@ -56,7 +61,7 @@ export const createTranslateLoader = (http: HttpClient) => {
     //   }
     // )
   ],
-  providers: [ AuctionService, CategoryService ],
+  providers: [ AuctionService, CategoryService, UserServiceService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,10 +1,11 @@
-package pl.edu.wat.wcy.isi.ai.PortalAukcyjny.service;
+package pl.edu.wat.wcy.isi.ai.PortalAukcyjny.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.service.EmailService;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))

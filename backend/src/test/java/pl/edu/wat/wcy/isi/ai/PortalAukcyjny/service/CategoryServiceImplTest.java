@@ -7,6 +7,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.entity.Category;
 import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.repository.CategoryRepository;
+import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.service.impl.CategoryServiceImpl;
 
 import java.util.Collection;
 

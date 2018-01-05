@@ -1,4 +1,4 @@
-package pl.edu.wat.wcy.isi.ai.PortalAukcyjny.service;
+package pl.edu.wat.wcy.isi.ai.PortalAukcyjny.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +13,7 @@ import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.entity.AuctionOffer;
 import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.entity.Category;
 import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.exception.InvalidPageDataException;
 import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.repository.AuctionRepository;
+import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.service.AuctionService;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

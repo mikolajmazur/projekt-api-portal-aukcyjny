@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import {CategoriesListComponent} from "./categories-list/categories-list.component";
 import {AuctionListComponent} from "./auction-list/auction-list.component";
+import {RegistrationComponent} from "./registration/registration.component";
 
 const routes: Routes = [
   { path: 'auction/:id', component: AuctionDetailComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'auctionList', component: AuctionListComponent },
   { path: 'category/:id', component: AuctionListComponent },
   { path: '', component: HomeComponent },
+  { path: 'register', component: RegistrationComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 

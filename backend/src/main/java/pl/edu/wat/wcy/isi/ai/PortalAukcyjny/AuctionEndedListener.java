@@ -37,22 +37,20 @@ public class AuctionEndedListener {
     }
 
     private void handleSoldAuction() {
-        // TODO: get email addresses from users
-        String sellersEmail = "nithiael@gmail.com";
+        String sellersEmail = auction.getOwner().getEmail();
         String sellersMessageSubject = String.format(auctionEndedSubjectTemplate, auction.getId(), auction.getTitle());
         String sellersMessage = String.format(soldMessageTemplate, auction.getTitle(), auction.getCurrentPrice());
         emailService.sendSimpleMessage(sellersEmail, sellersMessageSubject, sellersMessage);
 
         User winner = auction.getTopBid().getUser();
-        String winnerEmail = "nithiael@gmail.com";
+        String winnerEmail = winner.getEmail();
         String winnerMessageSubject = String.format(messageToWinnerSubjectTemplate, auction.getId(), auction.getTitle());
         String winnerMessage = String.format(messageToWinnerTemplate, auction.getCurrentPrice());
         emailService.sendSimpleMessage(winnerEmail, winnerMessageSubject, winnerMessage);
     }
 
     private void handleAuctionNotSold() {
-        // TODO: get email address from seller
-        String to = "nithiael@gmail.com";
+        String to = auction.getOwner().getEmail();
         String subject = String.format(auctionEndedSubjectTemplate, auction.getId(), auction.getTitle());
         String text = notSoldMessageTemplate;
         emailService.sendSimpleMessage(to, subject, text);

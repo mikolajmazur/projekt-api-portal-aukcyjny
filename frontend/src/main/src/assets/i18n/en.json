@@ -7,8 +7,16 @@
 	"itemDescription": "Item description",
 	"offers": "Offers",
 	"amount": "Amount",
-	"username": "User",
+	"user": "User",
 	"date ": "Date",
 	"subcategories": "Subcategories",
-	"noAuctionsInCategory": "There are no auctions in this category"
+	"noAuctionsInCategory": "There are no auctions in this category",
+	"email": "E-mail",
+	"nameAndSurname": "First and last name",
+	"firstName": "First name",
+	"lastName": "Last name",
+	"username": "Username",
+	"password": "Password",
+	"repeatPassword": "Repeat password",
+	"register": "Register"
 }

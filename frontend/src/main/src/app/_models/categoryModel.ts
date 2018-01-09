@@ -3,4 +3,5 @@ export class Category {
   name: string;
   subCategories: Category[];
   parentCategories: Category[];
+  parentId: number;
 }

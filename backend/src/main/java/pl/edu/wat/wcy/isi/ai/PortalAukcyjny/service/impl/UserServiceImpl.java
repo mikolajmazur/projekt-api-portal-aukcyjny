@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.DTO.UserDTO;
 import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.entity.Role;
 import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.entity.User;
 import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.exception.EmailTakenException;
@@ -20,18 +21,26 @@ public class UserServiceImpl implements UserService {
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @Override
-    public void createNormalUser(User user) {
-        if (isUsernameTaken(user.getUsername())){
+    public User createNormalUser(UserDTO userDto) {
+        if (isUsernameTaken(userDto.getUsername())){
             throw new UsernameTakenException();
         }
-        if (isEmailUsed(user.getEmail())){
+        if (isEmailUsed(userDto.getEmail())){
             throw new EmailTakenException();
         }
-        String hashedPassword = passwordEncoder.encode(user.getPassword());
-        user.setPassword(hashedPassword);
+        String hashedPassword = passwordEncoder.encode(userDto.getPassword());
+        User user = User.builder()
+                .password(hashedPassword)
+                .username(userDto.getUsername())
+                .lastName(userDto.getLastName())
+                .firstName(userDto.getFirstName())
+                .email(userDto.getEmail())
+                .build();
+
         Role userRole = roleRepository.getRoleByRoleName("ROLE_STANDARD_USER");
         user.addRole(userRole);
         userRepository.save(user);
+        return user;
     }
 
     @Override

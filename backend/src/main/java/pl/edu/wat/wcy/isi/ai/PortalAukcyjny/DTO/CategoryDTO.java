@@ -14,7 +14,6 @@ import java.util.List;
 public class CategoryDTO {
     private Long id;
     private String name;
-    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private Long parentId;
     @Builder.Default
     @JsonInclude(JsonInclude.Include.NON_EMPTY)

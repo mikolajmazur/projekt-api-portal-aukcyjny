@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Auction } from '../models/auction';
+import { Auction } from '../_models/auction';
 import {of} from 'rxjs/observable/of';
 import {catchError, tap} from 'rxjs/operators';
-import {AuctionListItem} from "../models/auctionListItem";
+import {AuctionListItem} from "../_models/auctionListItem";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type' : 'application/json'})

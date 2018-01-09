@@ -1,19 +1,44 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
-    <a routerLink="/" class="navbar-brand">Cebullegro</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-
+    <a routerLink="/" class="navbar-brand">Cebullegro</a>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a routerLink="user" class="nav-item nav-link" routerLinkActive="active">
-          Konto
-        </a>
-        <a routerLink="categories" class="nav-item nav-link" routerLinkActive="active">
-          Kategorie
-        </a>
-      </div>
+      <ul class="navbar-nav">
+        <!-- lista kategorii -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="categoriesDropDown" data-toggle="dropdown">
+            {{"categories" | translate }}
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" *ngFor="let category of filteredCategories" routerLink="category/{{category.id}}">{{category.name}}</a>
+          </div>
+        </li>
+        <!-- koniec listy kategorii -->
+
+        <!-- użytkownik - rozwijane menu -->
+        <li class="nav-item dropdown" *ngIf="username;else notLoggedIn">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="assets/icons/user_icon.svg" width="30" height="30" />
+            {{ username }}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" routerLink="/auction">{{ "addAuction" | translate}}</a>
+            <a class="dropdown-item" href="#">{{ "account" | translate }}</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" routerLink="" (click)="logout()">{{ "logout" | translate }}</a>
+          </div>
+        </li>
+        <ng-template #notLoggedIn>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login" routerLinkActive="active">
+              <img src="assets/icons/user_icon.svg" width="30" height="30" />
+              {{"loginButton" | translate }}</a>
+          </li>
+        </ng-template>
+        <!-- koniec użytkownika -->
+      </ul>
     </div>
 
   </div>

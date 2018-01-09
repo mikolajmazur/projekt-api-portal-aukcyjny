@@ -49,9 +49,12 @@ public class CategoryController {
     }
 
     private CategoryDTO createBasicCategoryDTO(Category category){
+        Category parent = category.getParent();
+        Long parentId = parent != null ? parent.getId() : null;
         return CategoryDTO.builder()
                 .name(category.getName())
                 .id(category.getId())
+                .parentId(parentId)
                 .build();
     }
 

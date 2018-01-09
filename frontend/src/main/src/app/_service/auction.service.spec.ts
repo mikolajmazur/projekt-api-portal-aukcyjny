@@ -2,7 +2,7 @@ import {TestBed, inject, async} from '@angular/core/testing';
 import {HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { AuctionService } from './auction.service';
-import {Auction} from '../models/auction';
+import {Auction} from '../_models/auction';
 
 describe('AuctionService', () => {
   let service: AuctionService;

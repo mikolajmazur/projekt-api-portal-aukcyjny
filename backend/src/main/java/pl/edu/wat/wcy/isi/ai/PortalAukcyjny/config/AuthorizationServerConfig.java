@@ -25,9 +25,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Value("${security.jwt.client-secret}")
     private String clientSecret;
 
-    @Value("${security.jwt.grant-type}")
-    private String grantType;
-
     @Value("${security.jwt.scope-read}")
     private String scopeRead;
 
@@ -37,7 +34,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Value("${security.jwt.resource-ids}")
     private String resourceIds;
 
-    @Value("${security.jwt.expiration-time}")
+    @Value("${security.jwt.token-expiration-time}")
     private int tokenExpirationTime;
 
     @Value("${security.jwt.refresh-token-expiration-time}")
@@ -53,7 +50,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .inMemory()
                 .withClient(clientId)
                 .secret(clientSecret)
-                .authorizedGrantTypes(grantType)
+                .authorizedGrantTypes("password", "refresh_token")
                 .scopes(scopeRead, scopeWrite)
                 .resourceIds(resourceIds)
                 .accessTokenValiditySeconds(tokenExpirationTime)
@@ -67,6 +64,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         endpoints.tokenStore(tokenStore)
                 .accessTokenConverter(accessTokenConverter)
                 .tokenEnhancer(enhancerChain)
-                .authenticationManager(authenticationManager);
+                .authenticationManager(authenticationManager)
+                .pathMapping("/oauth/token", "/api/v2/auth/token")
+                .pathMapping("/oauth/authorize", "/api/v2/oauth/authorize");
     }
 }

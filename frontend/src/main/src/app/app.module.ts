@@ -1,11 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { JwtModule } from "@auth0/angular-jwt";
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -14,15 +14,21 @@ import { AuctionDetailComponent } from './auction-detail/auction-detail.componen
 import { AddAuctionComponent } from './add-auction/add-auction.component';
 import { AccountComponent } from './account/account.component';
 import { HomeComponent } from './home/home.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { InMemoryAuctionService } from './shared/in-memory-auction.service';
-import { AuctionService } from './shared/auction.service';
+import { AuctionService } from './_service/auction.service';
 import { CategoriesListComponent } from './categories-list/categories-list.component';
-import { CategoryService} from "./shared/category.service";
+import { CategoryService} from "./_service/category.service";
 import { AuctionListComponent } from './auction-list/auction-list.component';
 import { RegistrationComponent } from './registration/registration.component';
-import { ShowFormErrorsComponent } from './show-form-errors.component';
-import { UserServiceService } from "./shared/user-service.service";
+import { ShowFormErrorsComponent } from './_shared/show-form-errors.component';
+import { UserService } from "./_service/user.service";
+import { LoginComponent } from './login/login.component';
+import { AuthenticationService } from "./_service/authentication.service";
+import { JwtHelper } from "angular2-jwt";
+import { StandardUserGuard } from "./_authGuards/standard-user-guard.service";
+import { RecaptchaModule } from "ng-recaptcha";
+import { RecaptchaFormsModule } from "ng-recaptcha/forms";
+import { HttpErrorInterceptor } from "./_interceptors/http-error-interceptor";
+import { HttpErrorPageComponent } from './http-error-page/http-error-page.component';
 
 export const createTranslateLoader = (http: HttpClient) => {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -36,11 +42,12 @@ export const createTranslateLoader = (http: HttpClient) => {
     AddAuctionComponent,
     AccountComponent,
     HomeComponent,
-    PageNotFoundComponent,
     CategoriesListComponent,
     AuctionListComponent,
     RegistrationComponent,
-    ShowFormErrorsComponent
+    ShowFormErrorsComponent,
+    LoginComponent,
+    HttpErrorPageComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +61,16 @@ export const createTranslateLoader = (http: HttpClient) => {
         deps: [HttpClient]
       }
     }),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return AuthenticationService.getToken();
+        },
+        whitelistedDomains: ['localhost:4200', 'localhost:8080']
+      }
+    }),
+    RecaptchaModule.forRoot(),
+    RecaptchaFormsModule
     // HttpClientInMemoryWebApiModule.forRoot(
     //   InMemoryAuctionService, {
     //     dataEncapsulation: false,
@@ -61,7 +78,14 @@ export const createTranslateLoader = (http: HttpClient) => {
     //   }
     // )
   ],
-  providers: [ AuctionService, CategoryService, UserServiceService ],
+  providers: [ AuctionService, CategoryService, UserService,
+    AuthenticationService, JwtHelper, StandardUserGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true
+    }
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

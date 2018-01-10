@@ -2,6 +2,7 @@ package pl.edu.wat.wcy.isi.ai.PortalAukcyjny.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -11,6 +12,7 @@ import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.DTO.CreateAuctionDTO;
 import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.entity.Auction;
 import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.entity.AuctionOffer;
 import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.entity.Category;
+import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.entity.User;
 import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.exception.InvalidPageDataException;
 import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.repository.AuctionRepository;
 import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.service.AuctionService;
@@ -25,6 +27,10 @@ import java.util.List;
 public class AuctionServiceImpl implements AuctionService {
     private final AuctionRepository auctionRepository;
     private final int PAGE_SIZE = 20;
+    @Value("${default-photo-url}")
+    private String defaultPhotoUrl;
+    @Value("${default-thumbnail-url}")
+    private String defaultThumbnailUrl;
 
     public Auction getAuction(long id) {
         return auctionRepository.findOne(id);
@@ -39,33 +45,44 @@ public class AuctionServiceImpl implements AuctionService {
         return offer;
     }
 
-    public Auction createAuction(CreateAuctionDTO dto){
+    public Auction createAuction(CreateAuctionDTO dto, User creator, Category category){
         LocalDateTime startDate = LocalDateTime.now();
         LocalDateTime endDate = startDate.plusDays(dto.getDuration());
         Auction auction = Auction.builder()
                 .description(dto.getDescription())
                 .startDateTime(startDate)
                 .endDateTime(endDate)
-                .photoUrl("")
+                .photoUrl(defaultPhotoUrl)
+                .thumbnailUrl(defaultThumbnailUrl)
+                .isActive(true)
                 .startingPrice(dto.getStartingPrice())
                 .title(dto.getTitle())
+                .owner(creator)
+                .category(category)
+                .duration(dto.getDuration())
                 .build();
 
         auctionRepository.save(auction);
         return auction;
     }
 
-    public List<AuctionMiniDTO> getAll() {
-        List<AuctionMiniDTO> list = new ArrayList<>();
-        auctionRepository.findAll().forEach(a -> list.add(
-                AuctionMiniDTO.builder()
-                        .id(a.getId())
-                        .title(a.getTitle())
-                        .currentPrice(a.getCurrentPrice())
-                        .build()
-        ));
+    public List<Auction> getAll(){
+        return auctionRepository.findAll();
+    }
 
-        return list;
+    @Override
+    public List<Auction> getFromCategory(Category category) {
+        return null;
+    }
+
+    @Override
+    public List<Auction> getForUser(User user) {
+        return auctionRepository.findAllByOwner(user);
+    }
+
+    @Override
+    public List<Auction> getFromCategories(Collection<Category> categories) {
+        return auctionRepository.findAllByCategoryIn(categories);
     }
 
     @Override
@@ -86,9 +103,20 @@ public class AuctionServiceImpl implements AuctionService {
         return list;
     }
 
-
     @Override
     public void updateAuction(Auction auction) {
         this.auctionRepository.save(auction);
+    }
+
+    @Override
+    public void delete(Auction auction) {
+        this.auctionRepository.delete(auction);
+    }
+
+    @Override
+    public AuctionOffer addOffer(AuctionOffer offer, Auction auction) {
+        auction.addOffer(offer);
+        auctionRepository.save(auction);
+        return offer;
     }
 }

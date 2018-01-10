@@ -25,7 +25,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" routerLink="/auction">{{ "addAuction" | translate}}</a>
-            <a class="dropdown-item" href="#">{{ "account" | translate }}</a>
+            <a class="dropdown-item" routerLink="/user">{{ "account" | translate }}</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" routerLink="" (click)="logout()">{{ "logout" | translate }}</a>
           </div>
@@ -38,6 +38,10 @@
           </li>
         </ng-template>
         <!-- koniec użytkownika -->
+
+        <li class="nav-item">
+          <a *ngIf="isAdmin()" routerLink="/admin" class="nav-link" >{{"adminPanel" | translate}}</a>
+        </li>
       </ul>
     </div>
 

@@ -25,6 +25,5 @@
 	<modules>
 		<module>frontend</module>
 		<module>backend</module>
-		<module>authorization</module>
 	</modules>
 </project>

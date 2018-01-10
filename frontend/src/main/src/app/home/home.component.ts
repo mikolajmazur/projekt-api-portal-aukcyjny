@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {AuthenticationService} from "../_service/authentication.service";
+import {JwtHelperService} from "@auth0/angular-jwt";
 
 @Component({
   selector: 'app-home',
@@ -8,18 +9,9 @@ import {AuthenticationService} from "../_service/authentication.service";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  a: string;
-  constructor(private http: HttpClient) { }
+  constructor() {}
 
   ngOnInit() {
   }
-  logout(){
-    //AuthenticationService.logout();
-  }
-  seta(){
-    this.a = "a";
-  }
-  reseta(){
-    this.a = null;
-  }
 }
+

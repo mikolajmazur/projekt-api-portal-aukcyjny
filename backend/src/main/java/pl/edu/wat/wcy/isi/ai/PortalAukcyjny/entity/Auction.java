@@ -19,12 +19,14 @@ public class Auction {
     private String title;
     private LocalDateTime endDateTime;
     private LocalDateTime startDateTime;
+    private int duration;
     private double startingPrice;
     private boolean isActive;
     @Lob
     private String description;
     private String photoUrl;
     private String thumbnailUrl;
+    @JsonIgnore
     @OneToMany(
             mappedBy = "auction",
             cascade = CascadeType.ALL,
@@ -32,14 +34,16 @@ public class Auction {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private List<AuctionOffer> offers = new ArrayList<>();
     @ManyToOne(fetch = FetchType.LAZY)
-    //@JsonIgnore
+    @JsonIgnore
     private Category category;
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private User owner;
 
     @Builder
     public Auction(String title, LocalDateTime endDateTime, LocalDateTime startDateTime, double startingPrice,
-                   boolean isActive, String description, String photoUrl, Category category, String thumbnailUrl) {
+                   boolean isActive, String description, String photoUrl, String thumbnailUrl, Category category,
+                   User owner, int duration) {
         this.title = title;
         this.endDateTime = endDateTime;
         this.startDateTime = startDateTime;
@@ -47,9 +51,12 @@ public class Auction {
         this.isActive = isActive;
         this.description = description;
         this.photoUrl = photoUrl;
-        this.category = category;
         this.thumbnailUrl = thumbnailUrl;
+        this.category = category;
+        this.owner = owner;
+        this.duration = duration;
     }
+
 
     public void addOffer(AuctionOffer offer){
         offers.add(offer);

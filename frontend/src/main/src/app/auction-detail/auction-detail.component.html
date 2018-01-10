@@ -1,5 +1,6 @@
 <div *ngIf="auction">
   <h2>{{auction.title}}</h2>
+  <div class="alert alert-danger" *ngIf="error">Oferta odrzucona - nie możesz zalicytować za mniej niż minimum ani licytować w swoich aukcjach</div>
   <!-- categories the item is in -->
   <div class="row">
       <ul *ngFor="let category of auction.containingCategories; let last = last" class="list-inline">
@@ -16,9 +17,9 @@
       {{ "currentPrice" | translate }} : {{auction.currentPrice | number : '1.2-2' }} zł<br>
       {{ "endDate" | translate }} : {{auction.endDateTime | date: getDateTimeFormat() }}<br>
       <hr>
-      <label>{{ "offer" | translate }} :</label><br><input value="{{auction.minimalBid | number : '1.2-2'}}"><br>
+      <label>{{ "offer" | translate }} :</label><br><input #bidValue value="{{auction.minimalBid | number : '1.2-2'}}"><br>
       Minimum: {{auction.minimalBid | number : '1.2-2'}}<br>
-      <button class="btn btn-primary" type="submit">{{ "makeBid" | translate }}</button><br><br>
+      <button class="btn btn-primary" type="submit" (click)="makeBid(bidValue.value)">{{ "makeBid" | translate }}</button><br><br>
       {{ "seller" | translate }}: {{auction.sellerUsername}}
     </div>
   </div>

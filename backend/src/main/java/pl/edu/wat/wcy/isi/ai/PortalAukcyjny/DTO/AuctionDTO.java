@@ -21,6 +21,7 @@ public class AuctionDTO {
     private LocalDateTime startDateTime;
     private String description;
     private String photoUrl;
+    private int duration;
     private long sellerId;
     private String sellerUsername;
     @Builder.Default

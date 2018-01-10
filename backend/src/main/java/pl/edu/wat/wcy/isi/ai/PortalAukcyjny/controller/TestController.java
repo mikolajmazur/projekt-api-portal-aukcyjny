@@ -45,4 +45,9 @@ public class TestController {
     public String onlyAdmin(){
         return "admin";
     }
+
+    @GetMapping("/")
+    public List<Auction> etst(){
+        return repo.findAllByOwner(null);
+    }
 }

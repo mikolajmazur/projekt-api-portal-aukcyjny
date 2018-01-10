@@ -13,6 +13,8 @@ import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.repository.RoleRepository;
 import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.repository.UserRepository;
 import pl.edu.wat.wcy.isi.ai.PortalAukcyjny.service.UserService;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class UserServiceImpl implements UserService {
@@ -51,5 +53,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean isEmailUsed(String email) {
         return userRepository.findByEmail(email) != null;
+    }
+
+    @Override
+    public User getUser(String username) {
+        return this.userRepository.findByUsername(username);
+    }
+
+    @Override
+    public List<User> getAll() {
+        return userRepository.findAll();
     }
 }

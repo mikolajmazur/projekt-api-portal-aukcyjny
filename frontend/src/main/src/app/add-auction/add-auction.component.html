@@ -1,3 +1,6 @@
+<div class="loading" *ngIf="!loaded">Loading</div>
+<h3 *ngIf="!editMode;else editTitle">{{ "createAuctionPageTitle" | translate }}</h3>
+<ng-template #editTitle><h3>{{ "editAuctionPageTitle" | translate }}</h3></ng-template>
 <form class="form-register justify-content-center" [formGroup]="auctionForm" (ngSubmit)="onSubmit(auctionForm)">
   <!--nazwa-->
   <div class="form-group">
@@ -31,5 +34,5 @@
     <label for="description">{{ "itemDescription" | translate }}</label>
     <textarea type="number" id="description" class="form-control" formControlName="description" rows="8"></textarea>
   </div>
-  <button class="btn btn-primary" type="submit" [disabled]="!auctionForm.valid">{{ 'createAuction' | translate }}</button>
+  <button class="btn btn-primary" type="submit" [disabled]="!auctionForm.valid">{{ 'save' | translate }}</button>
 </form>

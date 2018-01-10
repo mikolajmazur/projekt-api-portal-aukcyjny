@@ -12,10 +12,8 @@ import { NavComponent } from './nav/nav.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AuctionDetailComponent } from './auction-detail/auction-detail.component';
 import { AddAuctionComponent } from './add-auction/add-auction.component';
-import { AccountComponent } from './account/account.component';
 import { HomeComponent } from './home/home.component';
 import { AuctionService } from './_service/auction.service';
-import { CategoriesListComponent } from './categories-list/categories-list.component';
 import { CategoryService} from "./_service/category.service";
 import { AuctionListComponent } from './auction-list/auction-list.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -29,6 +27,9 @@ import { RecaptchaModule } from "ng-recaptcha";
 import { RecaptchaFormsModule } from "ng-recaptcha/forms";
 import { HttpErrorInterceptor } from "./_interceptors/http-error-interceptor";
 import { HttpErrorPageComponent } from './http-error-page/http-error-page.component';
+import { UserControlPanelComponent } from './user-control-panel/user-control-panel.component';
+import { AuctionsPageComponent } from './auctions-page/auctions-page.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 export const createTranslateLoader = (http: HttpClient) => {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -40,14 +41,15 @@ export const createTranslateLoader = (http: HttpClient) => {
     NavComponent,
     AuctionDetailComponent,
     AddAuctionComponent,
-    AccountComponent,
     HomeComponent,
-    CategoriesListComponent,
     AuctionListComponent,
     RegistrationComponent,
     ShowFormErrorsComponent,
     LoginComponent,
-    HttpErrorPageComponent
+    HttpErrorPageComponent,
+    UserControlPanelComponent,
+    AuctionsPageComponent,
+    AdminPanelComponent
   ],
   imports: [
     BrowserModule,

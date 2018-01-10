@@ -32,9 +32,11 @@ export class NavComponent implements OnInit {
         }});
     });
   }
-
   logout(){
     this.authenthicationService.logout();
     this.router.navigate(['/']);
+  }
+  isAdmin(): boolean{
+    return this.authenthicationService.isAdmin();
   }
 }

@@ -14,4 +14,5 @@ export class Auction {
   sellerUsername: string;
   offers: AuctionOffer[];
   containingCategories: Category[];
+  duration: number;
 }

@@ -15,6 +15,7 @@ import { Observable } from 'rxjs/Observable';
 export class AuctionDetailComponent implements OnInit {
   auction: Auction;
   auction$: Observable<Auction>;
+  private error: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -25,20 +26,22 @@ export class AuctionDetailComponent implements OnInit {
     this.getAuction();
   }
   getAuction(): void {
-    // jezeli id nie ulega zmianie (nie ma przejsc do roznego id
-    // w ramach tego samego komponentu)
-    // const id = +this.route.snapshot.paramMap.get('id');
-    // this.auctionService.getAuction(id)
-    //   .subscribe(auction => this.auction = auction);
     this.auction$ = this.route.paramMap
       .switchMap((params: ParamMap) =>
       this.auctionService.getAuction(+params.get('id')));
     this.auction$.subscribe(auction => this.auction = auction);
   }
-  getMinimalBid(): number{
-    return this.auction.currentPrice * 1.06;
-  }
   getDateTimeFormat(): string{
     return Constants.DATE_TIME_FORMAT;
+  }
+  makeBid(amount: number){
+    this.error = false;
+    this.auctionService.makeBidOnAuction(this.auction.id, amount).subscribe(response => {
+      this.auction.offers.push(response);
+      this.auction.currentPrice = response.amount;
+      this.auction.minimalBid = this.auction.currentPrice * 1.06;
+    }, err => {
+      this.error = true;
+    });
   }
 }

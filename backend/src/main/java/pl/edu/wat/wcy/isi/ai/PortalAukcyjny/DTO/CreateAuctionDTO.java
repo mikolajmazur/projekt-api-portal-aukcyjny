@@ -10,4 +10,5 @@ public class CreateAuctionDTO {
     private double startingPrice;
     private String description;
     private int duration;
+    private Long category;
 }

@@ -130,7 +130,6 @@ public class AuctionController {
     public AuctionDTO addAuction(@RequestBody CreateAuctionDTO dto, Principal principalUser){
         User user = userService.getUser(principalUser.getName());
         Category category = categoryService.getCategory(dto.getCategory());
-        auctionService.createAuction(dto, user, category);
         return createAuctionDTO(auctionService.createAuction(dto, user, category));
     }
 

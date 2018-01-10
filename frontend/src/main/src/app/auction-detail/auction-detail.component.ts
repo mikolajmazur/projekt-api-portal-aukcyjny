@@ -34,9 +34,13 @@ export class AuctionDetailComponent implements OnInit {
   getDateTimeFormat(): string{
     return Constants.DATE_TIME_FORMAT;
   }
-  makeBid(amount: number){
+  makeBid(amount: string){
+    console.log(amount);
+    amount = amount.replace(',','');
+    let num = +amount;
+    console.log(num);
     this.error = false;
-    this.auctionService.makeBidOnAuction(this.auction.id, amount).subscribe(response => {
+    this.auctionService.makeBidOnAuction(this.auction.id, num).subscribe(response => {
       this.auction.offers.push(response);
       this.auction.currentPrice = response.amount;
       this.auction.minimalBid = this.auction.currentPrice * 1.06;

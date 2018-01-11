@@ -37,5 +37,7 @@
 	"yourData": "Twoje dane",
 	"yourAuctions": "Twoje aukcje",
 	"roles": "Role",
-	"adminPanel": "Panel administracyjny"
+	"adminPanel": "Panel administracyjny",
+	"403": "<h2>Bład 403 - odmowa dostępu",
+	"404": "<h2>Błąd 404 - szukana strona nie istnieje"
 }

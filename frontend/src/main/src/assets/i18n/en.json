@@ -37,5 +37,7 @@
 	"yourData": "Your personal data",
 	"yourAuctions": "Your auctions",
 	"roles": "Role",
-	"adminPanel": "Admin panel"
+	"adminPanel": "Admin panel",
+	"403": "<h2>Error 403 - access denied",
+	"404": "<h2>Error 404 - page not found"
 }

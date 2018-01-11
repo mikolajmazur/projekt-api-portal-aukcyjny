@@ -1,0 +1,24 @@
+<div class="row" *ngIf="category">
+    <!-- render parent categories -->
+  <div class="col-12"><h2>{{category.name}}</h2></div>
+
+    <ul *ngFor="let category of category.parentCategories" class="list-inline">
+      <li class="list-inline-item"><a routerLink="/category/{{category.id}}">{{category.name}} </a>
+          ->
+    </ul>
+  <!-- render current category -->
+    <a routerLink="/category/{{category.id}}">{{category.name}} </a>
+</div>
+<div class="row">
+  <div class="col-md-2" *ngIf="category">
+    <!-- render subcategories -->
+    {{ "subcategories" | translate }}
+    <ul *ngFor="let category of category.subCategories">
+      <li><a routerLink="/category/{{category.id}}">{{category.name}}</a></li>
+    </ul>
+  </div>
+  <div class="col-12 col-md-10">
+    <!-- render list of auctions in chosen category -->
+    <app-auctions-page [auctions]="auctions" [shouldRenderEditAndDelete]="false"></app-auctions-page>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<table class="table table-sm">
+  <thead>
+  <tr class="row">
+    <th class="col-2">{{ "photo" | translate }}</th>
+    <th class="col-6">{{ "title" | translate }}</th>
+    <th class="col-2">{{ "currentPrice" | translate }}</th>
+    <th class="col-1" *ngIf="shouldRenderEditAndDelete">{{ "edit" | translate }}</th>
+    <th class="col-1" *ngIf="shouldRenderEditAndDelete">{{ "delete" | translate }}</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let auction of auctions" class="row">
+    <td class="col-2"><img src="{{auction.thumbnailUrl}}"/></td>
+    <td class="col-6"><a routerLink="/auction/{{auction.id}}">{{auction.title}}</a></td>
+    <td class="col-2">{{auction.currentPrice}} zł</td>
+    <td class="col-1" *ngIf="shouldRenderEditAndDelete">
+      <button class="btn btn-primary btn-sm" (click)="editClicked(auction.id)">{{ "edit" | translate }}</button>
+    </td>
+    <td class="col-1" *ngIf="shouldRenderEditAndDelete">
+      <button class="btn btn-sm btn-danger" (click)="deleteClicked(auction.id)">{{ "delete" | translate }}</button>
+    </td>
+  </tr>
+  </tbody>
+</table>

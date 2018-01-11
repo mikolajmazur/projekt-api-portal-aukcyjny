@@ -1,0 +1,5 @@
+@ngx-translate
+angular2-jwt
+@auth0/angular-jwt
+@moebius/ng-validators
+ng-recaptcha

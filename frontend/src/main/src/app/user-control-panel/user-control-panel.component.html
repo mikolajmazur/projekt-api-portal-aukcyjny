@@ -1,0 +1,11 @@
+<h2>Panel użytkownika</h2>
+<div class="row">
+  <div class="col-2">
+    <a routerLink="#">{{ "yourAuctions" | translate }}</a>
+  </div>
+  <div class="col-10"><app-auctions-page [auctions]="auctions"
+                                         [shouldRenderEditAndDelete]="true"
+                                         (onEditClicked)="editClicked($event)"
+                                         (onDeleteClicked)="deleteClicked($event)"></app-auctions-page></div>
+</div>
+

@@ -1,0 +1,43 @@
+<form class="form-register justify-content-center" [formGroup]="registrationForm" (ngSubmit)="onSubmit(registrationForm)">
+  <div class="form-group">
+    <label for="email">{{ 'email' | translate}}</label>
+    <input type="email" id="email" class="form-control" formControlName="email">
+    <app-show-form-errors [control]="registrationForm.controls.email"></app-show-form-errors>
+  </div>
+  <div class="form-group">
+    <label>{{ 'nameAndSurname' | translate}}</label>
+    <div class="form-row">
+      <div class="col">
+        <input type="text" id="firstName" class="form-control" placeholder="{{ 'firstName' | translate }}"
+               formControlName="firstName">
+        <app-show-form-errors [control]="registrationForm.controls.firstName"></app-show-form-errors>
+      </div>
+      <div class="col">
+        <input type="text" id="lastName" class="form-control" placeholder="{{ 'lastName' | translate }}"
+               formControlName="lastName">
+        <app-show-form-errors [control]="registrationForm.controls.lastName"></app-show-form-errors>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="username">{{ 'username' | translate }}</label>
+    <input type="text" id="username" class="form-control" formControlName="username">
+    <app-show-form-errors [control]="registrationForm.controls.username"></app-show-form-errors>
+  </div>
+  <div class="form-group">
+    <label for="password">{{ 'password' | translate }}</label>
+    <input type="password" id="password" class="form-control" formControlName="password">
+    <app-show-form-errors [control]="registrationForm.controls.password"></app-show-form-errors>
+  </div>
+  <div class="form-group">
+    <label for="repeatPassword">{{ 'repeatPassword' | translate }}</label>
+    <input type="password" id="repeatPassword" class="form-control" formControlName="repeatPassword">
+    <app-show-form-errors [control]="registrationForm.controls.repeatPassword"></app-show-form-errors>
+  </div>
+  <div class="form-group">
+    <re-captcha (resolved)="resolved($event)" siteKey="6Lflxj4UAAAAACIXWAcXqKhQgKQplMEfQUnZzu-d"
+    formControlName="recaptcha"></re-captcha>
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="!registrationForm.valid">{{ 'register' | translate }}</button>
+  <div *ngIf="error">{{ error }}</div>
+</form>
